@@ -2,6 +2,11 @@ import { tmdb } from '@/lib/tmdb';
 import Image from 'next/image';
 import { Suspense } from 'react';
 
+export const unstable_prefetch = {
+  mode: 'runtime',
+  samples: [{}],
+};
+
 export default async function Page({ params }: PageProps<'/movies/[id]'>) {
   return (
     <Suspense
@@ -19,6 +24,8 @@ export default async function Page({ params }: PageProps<'/movies/[id]'>) {
 async function Content({
   params,
 }: Omit<PageProps<'/movies/[id]'>, 'searchParams'>) {
+  'use cache';
+
   const { id } = await params;
   const movie = await tmdb.movies.details(+id);
   const date = new Date(movie.release_date);

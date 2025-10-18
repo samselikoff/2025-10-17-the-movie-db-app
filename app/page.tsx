@@ -35,7 +35,6 @@ async function Content() {
           />
         </Link>
       ))}
-      <p>hi</p>
     </div>
   );
 }
