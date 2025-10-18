@@ -1,5 +1,6 @@
 import { tmdb } from '@/lib/tmdb';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Suspense } from 'react';
 
 export const unstable_prefetch = {
@@ -37,19 +38,21 @@ async function Content({
   });
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      <Image
-        width={250}
-        height={375}
-        className="rounded-lg"
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-        alt={movie.title}
-      />
-      <div className="col-span-2">
-        <h1 className="font-semibold text-xl text-gray-700">{movie.title}</h1>
-        <p className="font-bold text-sm text-gray-500">{formattedDate}</p>
-
-        <p>{movie.adult}</p>
+    <div>
+      <Link href="/">⬅︎ All movies</Link>
+      <div className="mt-4 grid grid-cols-3 gap-4">
+        <Image
+          width={250}
+          height={375}
+          className="rounded-lg"
+          src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+          alt={movie.title}
+        />
+        <div className="col-span-2">
+          <h1 className="font-semibold text-xl text-gray-700">{movie.title}</h1>
+          <p className="font-bold text-sm text-gray-500">{formattedDate}</p>
+          <p>{movie.adult}</p>
+        </div>
       </div>
     </div>
   );
